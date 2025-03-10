@@ -1,0 +1,37 @@
+dataSources:
+  - kind: ethereum
+    name: TreasureManager
+    network: sepolia
+    source:
+      address: "0xDFC97b057eF039772F1bD7e8acf18949B660Cff1"
+      abi: TreasureManager
+      startBlock: 7866023
+    mapping:
+      kind: ethereum/events
+      language: wasm/assemblyscript
+      abis:
+        - file: ./abis/TreasureManager.json
+          name: TreasureManager
+      apiVersion: 0.0.7
+      entities:
+        - DepositToken
+        - WithdrawToken
+        - GrantRewardTokenAmount
+        - WithdrawManagerUpdate
+      eventHandlers:
+        - event: DepositToken(indexed address,indexed address,uint256)
+          handler: handlerDepositToken
+          receipt: true
+        - event: WithdrawToken(indexed address,indexed address,address,uint256)
+          handler: handlerWithdrawToken
+          receipt: true
+        - event: GrantRewardTokenAmount(indexed address,address,uint256)
+          handler: handlerGrantRewardTokenAmount
+          receipt: true
+        - event: WithdrawManagerUpdate(indexed address)
+          handler: handlerWithdrawManagerUpdate
+          receipt: true
+      file: ./src/treasure-graph.ts
+schema:
+  file: ./schema.graphql
+specVersion: 0.0.6

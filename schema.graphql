@@ -1,0 +1,30 @@
+type DepositToken @entity{
+    id: ID!
+    tokenAddress: Bytes
+    sender: Bytes!
+    amount: BigInt!
+    timestamp: BigInt!
+}
+
+type WithdrawToken @entity{
+    id: ID!
+    tokenAddress: Bytes!
+    sender: Bytes!
+    withdrawAddress: Bytes!
+    amount: BigInt!
+    timestamp: BigInt!
+}
+
+type GrantRewardTokenAmount @entity{
+    id: ID!
+    tokenAddress: Bytes!
+    granter: Bytes!
+    amount: BigInt!
+    timestamp: BigInt!
+}
+
+type WithdrawManagerUpdate @entity{
+    id: ID!
+    withdrawManger: Bytes!
+    timestamp: BigInt!
+}
